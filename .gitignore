@@ -1,3 +1,6 @@
+vuln/target
+marshalsec/target
+
 # Compiled class file
 *.class
 
