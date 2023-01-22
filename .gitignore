@@ -1,5 +1,6 @@
 vuln/target
 marshalsec/target
+exploit/target
 
 # Compiled class file
 *.class

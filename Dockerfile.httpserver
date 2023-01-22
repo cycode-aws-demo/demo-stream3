@@ -1,14 +1,15 @@
-FROM openjdk:8u121-jdk as build
+FROM maven:3.5-jdk-11 AS build
 
-COPY exploit /usr/app/
-WORKDIR /usr/app
-RUN javac Exploit.java
+COPY exploit /usr/src/app
+WORKDIR /usr/src/app
+
+RUN mvn clean compile
 
 FROM python:3.8
 
 RUN pip install httpserver
 
-COPY --from=build /usr/app/Exploit.class /server/
+COPY --from=build /usr/src/app/target/classes/Exploit.class /server/
 WORKDIR /server
 
 ENTRYPOINT ["python", "-m", "http.server"]
