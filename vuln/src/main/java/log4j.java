@@ -50,10 +50,10 @@ public class log4j {
 
     public static void createSecret() throws IOException {
         Random r = new Random();
-        byte[] randomString = new byte[16];
+        byte[] randomString = new byte[64];
         
         for (int i=0; i<randomString.length; i++) {
-            randomString[i] = (byte)(r.nextInt(52) + 'a');
+            randomString[i] = (byte)(r.nextInt(52) + 'A');
         }
         FileUtils.writeByteArrayToFile(new File("/secret.txt"), randomString);
     }
