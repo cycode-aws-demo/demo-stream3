@@ -49,9 +49,13 @@ public class log4j {
     }
 
     public static void createSecret() throws IOException {
-        byte[] random = new byte[16];
-        new Random().nextBytes(random);
-        FileUtils.writeByteArrayToFile(new File("/secret.txt"), random);
+        Random r = new Random();
+        byte[] randomString = new byte[16];
+        
+        for (int i=0; i<randomString.length; i++) {
+            randomString[i] = (byte)(r.nextInt(52) + 'a');
+        }
+        FileUtils.writeByteArrayToFile(new File("/secret.txt"), randomString);
     }
 
     public static void main(String[] args) throws IOException {
